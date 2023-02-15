@@ -1,0 +1,21 @@
+{
+    "blogs": "/database/blogs",
+    "blogsByTag": "/database/blogs/tags/:tag",
+    "misc-files" : "/database/misc-files",
+    "specificBlog": "/database/blogs/:id",
+    "specificBlogRender" : "/database/blogs/:id/:ssr",
+    "projects": "/database/projects",
+    "specificProject": "/database/projects/:id",
+    "specificProjectRender" : "/database/projects/:id/:ssr",
+    "contactMe": "/database/contact-me-texts",
+    "setActiveContactme" : "/database/contact-me-texts/set-active/:id",
+    "specificContactMe": "/database/contact-me-texts/:id",
+    "specificContactMeRender" : "/database/contact-me-texts/:id/:ssr",
+    "bios": "/database/bios",
+    "setActiveBio" : "/database/bios/set-active/:id", 
+    "specificBio": "/database/bios/:id/:ssr",
+    "specificBioRender" : "/database/bios/:id/:ssr",
+    "misc": "/database/miscalleneous-files",
+    "specificMisc" : "/database/miscalleneous-files/:id",
+    "specificMiscRender": "/database/miscalleneous-files/:id/:ssr"
+  }
