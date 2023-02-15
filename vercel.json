@@ -1,0 +1,16 @@
+{
+    "version": 2,
+    "builds": [
+      {
+        "src": "rest-server.js",
+        "use": "@now/node"
+      }
+    ],
+    "routes": [
+        {
+          "src": "/(.*)",
+          "dest": "rest-server.js"
+        }
+      ]
+  }
+  
