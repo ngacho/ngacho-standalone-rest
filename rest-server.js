@@ -45,7 +45,7 @@ let redisClient;
 
 (async () => {
     redisClient = redis.createClient({
-       // url: process.env.REDIS_URL
+        url: process.env.REDIS_URL
       });
 
     redisClient.on("error", (error) => logger.error(error));
