@@ -35,12 +35,12 @@ jobs:
       env:
         HOST: ${{ secrets.HOST }}
         USERNAME : ${{ secrets.USERNAME }}
-        PUBLIC_KEY : ${{ secrets.PUBLIC_KEY }}
+        PRIVATE_KEY : ${{ secrets.PRIVATE_KEY }}
       uses: appleboy/ssh-action@master
       with:
         host: ${{ env.HOST }}
         username: ${{ env.USERNAME }}
-        key: ${{ env.PUBLIC_KEY }}
+        key: ${{ env.PRIVATE_KEY }}
         port: 22
         script: |
           cd /srv/standalone-rest
