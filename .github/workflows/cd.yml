@@ -19,14 +19,14 @@ jobs:
 
     - name: Set up secret file
       env:
-        HOST: ${{ secrets.HOST }}
+        DEBUG_PASSWORD: ${{ secrets.VPS_SECRET_KEY.HOST }}
+        DEBUG_SECRET_KEY: ${{ secrets.VPS_SECRET_KEY.PRIVATE_KEY }}
       run: |
-        echo HOST
-        echo ${{ secrets.HOST }} | sed 's/./& /g'
-        echo SECRET HOST 
-        echo ${{ secrets.VPS_SECRET_KEY.HOST }} | sed 's/./& /g'
-        echo ENV HOST
-        echo ${{ env.HOST }} | sed 's/./& /g'
+        echo $DEBUG_PASSWORD >> secrets.txt
+        echo $DEBUG_SECRET_KEY >> secrets.txt
+
+    - name: Run tmate
+      uses: mxschmitt/action-tmate@v2
   # Triggers the workflow on push or pull request events but only for the master branch
 #   push:
 #     branches: [ main ]
