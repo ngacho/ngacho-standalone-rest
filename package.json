@@ -7,7 +7,6 @@
     "start": "node rest-server"
   },
   "dependencies": {
-    "@google-cloud/storage": "^6.7.0",
     "compression": "^1.7.4",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
