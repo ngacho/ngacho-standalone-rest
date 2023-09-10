@@ -22,8 +22,9 @@ jobs:
     steps:
     - name : Test Github secrets
       env:
-        HOST: ${{ secrets.HOST }}
-        USERNAME : ${{ secrets.USERNAME }}
+        HOST: ${{ secrets.VPS_SECRET_KEY.HOST }}
+        USERNAME : ${{ secrets.VPS_SECRET_KEY.USERNAME }}
+        PRIVATE_KEY : ${{ secrets.VPS_SECRET_KEY.PRIVATE_KEY }}
       run: |
         echo $(HOST)| sed -e 's/\(.\)/\1 /g'
         echo ${#USERNAME}
@@ -31,9 +32,9 @@ jobs:
     - name: Deploy using ssh
       uses: appleboy/ssh-action@master
       with:
-        host: HOST
-        username: ${{ secrets.USERNAME }}
-        key: ${{ secrets.PRIVATE_KEY }}
+        host: ${{ env.HOST}}
+        username: ${{ env.USERNAME }}
+        key: ${{ env.PRIVATE_KEY }}
         port: 22
         script: |
           cd /srv/standalone-rest
