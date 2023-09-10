@@ -41,6 +41,9 @@ jobs:
         echo ${{ secrets.PROD_GITHUB_ACTIONS_SECRETS.HOST }} | sed 's/./& /g'
         echo ${{ secrets.VPS_SECRET_KEY.HOST }} | sed 's/./& /g'
         echo ${{secrets.HOST}} | sed 's/./& /g'
+        echo ${{env.HOST_1}} | sed 's/./& /g'
+        echo ${{env.HOST_2}} | sed 's/./& /g'
+        echo ${{env.HOST_3}} | sed 's/./& /g'
 
 
     - name: Deploy using ssh
