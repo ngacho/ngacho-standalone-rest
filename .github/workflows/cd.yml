@@ -27,7 +27,7 @@ jobs:
         host: ${{ secrets.PROD_GITHUB_ACTIONS_SECRETS.HOST }}
         username: ${{ secrets.PROD_GITHUB_ACTIONS_SECRETS.USERNAME }}
         key: ${{ secrets.PROD_GITHUB_ACTIONS_SECRETS.PRIVATE_KEY }}
-        port: 22
+        port: 8080
         script: |
           cd /srv/standalone-rest
           git pull origin main
