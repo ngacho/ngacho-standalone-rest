@@ -26,8 +26,6 @@ jobs:
         key: ${{ secrets.PRIVATE_KEY }}
         port: 22
         script: |
-          echo "name is $(host)"
-          echo "name is $(username)"
           cd /srv/standalone-rest
           git pull origin main
           git status
