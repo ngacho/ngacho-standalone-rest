@@ -44,5 +44,6 @@ jobs:
         port: 22
         script: |
           cd /srv/standalone-rest
+          eval "$(ssh-agent -s)"
           ssh -vT git@github.com
           
