@@ -1,6 +1,5 @@
 // import packages
 const express = require('express');
-const cors = require('cors');
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const path = require('path');
@@ -8,7 +7,6 @@ const multer = require('multer')
 const redis = require('redis');
 require("dotenv").config();
 const PORT = process.env.SERVER_PORT || 8080;
-const debug = require("debug")("server");
 const compression = require("compression");
 const ServerController = require('./server-controller');
 const FirebaseHelperClass = require('./firebase-helper');
@@ -45,11 +43,9 @@ app.use(bodyParser.json());
 let redisClient;
 
 (async () => {
-    redisClient = redis.createClient({
-        url: process.env.REDIS_URL
-      });
+    redisClient = redis.createClient({});
 
-    redisClient.on("error", (error) => logger.error(error));
+    redisClient.on("error", (error) => logger.error(`Redis error: ${error}`));
 
     await redisClient.connect();
 })();
@@ -60,6 +56,11 @@ const serverController = new ServerController(redisClient, firebaseHelper);
 app.listen(PORT, () => {
     logger.info("Server is listening on port " + PORT);
 });
+
+
+app.get('/', (req, res) => {
+    res.json({message : "Welcome to Ngacho's api server"});
+})
 
 
 // upload a file (move method to controller). Temporary fix ;-)
@@ -215,7 +216,7 @@ app.delete([restRoutes.specificProject, restRoutes.specificBio, restRoutes.speci
 
 
 app.use((req, res) => {
-    res.sendFile(path.join(initial_path, "/404.html"));
+    res.sendStatus(404);
 });
 
 function authorizeAccess(req, res, next) {
@@ -234,7 +235,3 @@ function authorizeAccess(req, res, next) {
     }
     
 }
-
-
-// Export the Express API
-module.exports = app;
