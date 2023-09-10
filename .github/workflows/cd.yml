@@ -44,7 +44,9 @@ jobs:
         port: 22
         script: |
           cd /srv/standalone-rest
+          pm2 stop rest-server
+          pm2 delete rest-server
           git pull origin main
           git status
           npm install
-          pm2 restart rest-server
+          pm2 start rest-server.js
