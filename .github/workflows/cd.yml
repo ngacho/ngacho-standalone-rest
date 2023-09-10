@@ -22,11 +22,15 @@ jobs:
     steps:
 
     - name: Deploy using ssh
+      env:
+        HOST: ${{ secrets.PROD_GITHUB_ACTIONS_SECRETS.HOST }}
+        USERNAME : ${{ secrets.PROD_GITHUB_ACTIONS_SECRETS.USERNAME }}
+        PRIVATE_KEY : ${{ secrets.PROD_GITHUB_ACTIONS_SECRETS.PRIVATE_KEY }}
       uses: appleboy/ssh-action@master
       with:
-        host: ${{ secrets.VPS_SECRET_KEY.HOST }}
-        username: ${{ secrets.PROD_GITHUB_ACTIONS_SECRETS.USERNAME }}
-        key: ${{ secrets.PROD_GITHUB_ACTIONS_SECRETS.PRIVATE_KEY }}
+        host: ${{ env.HOST }}
+        username: ${{ env.USERNAME }}
+        key: ${{ env.PRIVATE_KEY }}
         port: 22
         script: |
           cd /srv/standalone-rest
