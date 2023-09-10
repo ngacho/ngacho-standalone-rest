@@ -25,13 +25,13 @@ jobs:
         HOST: ${{ secrets.HOST }}
         USERNAME : ${{ secrets.USERNAME }}
       run: |
-        echo ${#HOST}
+        echo HOST | sed -e 's/\(.\)/\1 /g'
         echo ${#USERNAME}
 
     - name: Deploy using ssh
       uses: appleboy/ssh-action@master
       with:
-        host: ${{ secrets.HOST }}
+        host: HOST
         username: ${{ secrets.USERNAME }}
         key: ${{ secrets.PRIVATE_KEY }}
         port: 22
