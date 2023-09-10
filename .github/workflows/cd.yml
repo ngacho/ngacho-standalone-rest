@@ -38,12 +38,18 @@ jobs:
         HOST_2 : ${{secrets.VPS_SECRET_KEY.HOST}}
         HOST_3 : ${{secrets.HOST}}
       run: |
-        echo ${{ secrets.PROD_GITHUB_ACTIONS_SECRETS.HOST }} | sed 's/./& /g'
-        echo ${{ secrets.VPS_SECRET_KEY.HOST }} | sed 's/./& /g'
-        echo ${{secrets.HOST}} | sed 's/./& /g'
-        echo ${{env.HOST_1}} | sed 's/./& /g'
-        echo ${{env.HOST_2}} | sed 's/./& /g'
-        echo ${{env.HOST_3}} | sed 's/./& /g'
+        if [ "${{ secrets.HOST }}" != '' ]; then
+          echo "key not available from secrets.HOST";
+
+        if [ "${{ secrets.VPS_SECRET_KEY.HOST }}" != '' ]; then
+          echo "key not available from secrets.VPS_SECRET_KEY.HOST";
+
+        if [ "${{ secrets.PROD_GITHUB_ACTIONS_SECRETS.HOST }}" != '' ]; then
+          echo "key not available from secrets.PROD_GITHUB_ACTIONS_SECRETS.HOST";
+
+          
+        
+  
 
 
     - name: Deploy using ssh
