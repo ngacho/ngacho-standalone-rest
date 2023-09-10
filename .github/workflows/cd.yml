@@ -23,9 +23,9 @@ jobs:
 
     - name: Deploy using ssh
       env:
-        HOST: ${{ secrets.PROD_GITHUB_ACTIONS_SECRETS.HOST }}
-        USERNAME : ${{ secrets.PROD_GITHUB_ACTIONS_SECRETS.USERNAME }}
-        PRIVATE_KEY : ${{ secrets.PROD_GITHUB_ACTIONS_SECRETS.PRIVATE_KEY }}
+        HOST: ${{ secrets.HOST }}
+        USERNAME : ${{ secrets.USERNAME }}
+        PRIVATE_KEY : ${{ secrets.PRIVATE_KEY }}
       uses: appleboy/ssh-action@master
       with:
         host: ${{ env.HOST }}
