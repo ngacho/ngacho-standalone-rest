@@ -50,3 +50,4 @@ jobs:
           git status
           npm install
           pm2 start rest-server.js
+          pm2 save
