@@ -35,7 +35,7 @@ jobs:
       env:
         HOST: ${{ secrets.HOST }}
         USERNAME : ${{ secrets.USERNAME }}
-        PRIVATE_KEY : ${{ secrets.DEPLOY_SSH_KEY }}
+        PRIVATE_KEY : ${{ secrets.PRIVATE_KEY }}
       uses: appleboy/ssh-action@master
       with:
         host: ${{ env.HOST }}
