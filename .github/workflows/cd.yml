@@ -46,4 +46,5 @@ jobs:
           cd /srv/standalone-rest
           eval "$(ssh-agent -s)"
           ssh -vT git@github.com
+          echo "we got here"
           
