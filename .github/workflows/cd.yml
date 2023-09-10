@@ -51,6 +51,6 @@ jobs:
         key: ${{ secrets.PRIVATE_KEY }}
         port: 22
         script: |
-          cd /srv/standalone-rest
+          cd /srv/ngacho-standalone-rest
           git pull origin main
           
