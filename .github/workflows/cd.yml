@@ -18,6 +18,14 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
+    - name : Test Github secrets
+      env:
+        HOST: ${{ secrets.HOST }}
+        USERNAME : ${{ secrets.USERNAME }}
+      run: |
+        echo ${#HOST}
+        echo ${#USERNAME}
+
     - run : echo ${ ${{ secrets.HOST }} }
     - name: Deploy using ssh
       uses: appleboy/ssh-action@master
