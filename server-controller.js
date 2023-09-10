@@ -1,10 +1,9 @@
-const MarkDownParser = require('./mark-down-parser');
+
 const logger  = require('./utils/server-logger');
 module.exports = class ServerController {
     constructor(redisClient, firebaseHelperClass) {
         this.firebaseHelper = firebaseHelperClass;
         this.redisClient = redisClient;
-        this.markDownParser = new MarkDownParser();
     }
 
 
@@ -122,10 +121,6 @@ module.exports = class ServerController {
             if (reply == 1) {
                 client.hGet(storageName, id).then((data) => {
                     let blog = {...JSON.parse(data)};
-                    if (serverSideRendering) {
-                        let html = this.markDownParser.parseMarkdown(blog['text']);
-                        blog['html'] = html;
-                    }
 
                     res.status(200).send(blog);
                 }).catch((err) => {
@@ -138,10 +133,6 @@ module.exports = class ServerController {
                 this.firebaseHelper.getSpecificDocFromFirebase(storageName, id).then((data) => {
                     client.hSet(storageName, id, JSON.stringify(data));
                     let blog = {...data};
-                    if (serverSideRendering) {
-                        let html = this.markDownParser.parseMarkdown(blog['text']);
-                        blog['html'] = html;
-                    }
 
                     res.status(200).send(blog);
                 }).catch((err) => {
@@ -247,7 +238,6 @@ module.exports = class ServerController {
         const storageName = req.url.split('/')[2];
         let client = this.redisClient;
         let id = req.params.id;
-        let markDownParser = this.markDownParser;
 
         var updatedItems = []
 
@@ -258,7 +248,7 @@ module.exports = class ServerController {
                 let newObject = { ...oldItem, active: false, html : '' };
 
                 if (key === id) {
-                    newObject = { ...newObject, active: true , html : markDownParser.parseMarkdown(newObject['text'])}
+                    newObject = { ...newObject, active: true}
                 }
                 updatedItems.push(newObject);
 
@@ -287,9 +277,8 @@ module.exports = class ServerController {
 
         this.firebaseHelper.postDocToFirebaseDatabase(storageName, doc).then((data) => {
             let doc = data['doc'];
-
             client.hSet(storageName, doc['id'], JSON.stringify(doc));
-            logger.warn(`posted ${id} in ${storageName} successfully || ${req.ip} - ${req.headers['user-agent']}`);
+            logger.warn(`posted ${doc['id']} in ${storageName} successfully || ${req.ip} - ${req.headers['user-agent']}`);
             res.status(200).send({ message: 'Posted successfully' });
         }).catch((err) => {
             logger.error(`Failed to add file to firebase: ${err} || ${req.ip} - ${req.headers['user-agent']}`);
