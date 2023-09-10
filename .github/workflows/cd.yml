@@ -24,10 +24,10 @@ jobs:
     - name: Deploy using ssh
       uses: appleboy/ssh-action@master
       with:
-        host: ${{ secrets.PROD_GITHUB_ACTIONS_SECRETS.HOST }}
+        host: ${{ secrets.VPS_SECRET_KEY.HOST }}
         username: ${{ secrets.PROD_GITHUB_ACTIONS_SECRETS.USERNAME }}
         key: ${{ secrets.PROD_GITHUB_ACTIONS_SECRETS.PRIVATE_KEY }}
-        port: 8080
+        port: 22
         script: |
           cd /srv/standalone-rest
           git pull origin main
