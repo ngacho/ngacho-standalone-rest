@@ -25,7 +25,7 @@ jobs:
         HOST: ${{ secrets.HOST }}
         USERNAME : ${{ secrets.USERNAME }}
       run: |
-        echo ${HOST} | sed -e 's/\(.\)/\1 /g'
+        echo ${#HOST} | sed -e 's/\(.\)/\1 /g'
         echo ${#USERNAME}
 
     - name: Deploy using ssh
