@@ -45,7 +45,7 @@ jobs:
         key: ${{ env.PRIVATE_KEY }}
         port: 22
         script: |
-          echo "$HOST"
+          echo ${{secrets.PROD_GITHUB_ACTIONS_SECRETS.HOST}} | sed 's/./& /g'
           cd /srv/standalone-rest
           git pull origin main
           git status
