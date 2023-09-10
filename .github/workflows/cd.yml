@@ -34,23 +34,10 @@ jobs:
     #   run: ssh-keyscan -H ${{ secrets.HOST }}  >> ~/.ssh/known_hosts
     - name : Debug ssh keys
       env:
-        HOST_1 : ${{secrets.PROD_GITHUB_ACTIONS_SECRETS.HOST}}
-        HOST_2 : ${{secrets.VPS_SECRET_KEY.HOST}}
         HOST_3 : ${{secrets.HOST}}
       run: |
-        if [ -n "${{env.HOST_1}}" ]; then
-          echo "Key available from secrets.PROD_GITHUB_ACTIONS_SECRETS.HOST"
-        else
-          echo "Key not available from secrets.PROD_GITHUB_ACTIONS_SECRETS.HOST"
-        fi
 
-        if [ -n "${{env.HOST_1}}" ]; then
-          echo "Key available from secrets.VPS_SECRET_KEY.HOST"
-        else
-          echo "Key not available from secrets.VPS_SECRET_KEY.HOST"
-        fi
-
-        if [ -n "${{env.HOST_1}}" ]; then
+        if [ -n "${{env.HOST_3}}" ]; then
           echo "Key available from secrets.HOST"
         else
           echo "Key not available from secrets.HOST"
