@@ -48,7 +48,7 @@ jobs:
       with:
         host: ${{ env.HOST }}
         username: ${{ env.USERNAME }}
-        key: ${{ env.PRIVATE_KEY }}
+        key: ${{ secrets.PRIVATE_KEY }}
         port: 22
         script: |
           cd /srv/standalone-rest
