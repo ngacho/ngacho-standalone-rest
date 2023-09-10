@@ -22,9 +22,9 @@ jobs:
     steps:
     - name : Test Github secrets
       env:
-        HOST: ${{ secrets.VPS_SECRET_KEY.HOST }}
-        USERNAME : ${{ secrets.VPS_SECRET_KEY.USERNAME }}
-        PRIVATE_KEY : ${{ secrets.VPS_SECRET_KEY.PRIVATE_KEY }}
+        HOST: ${{ secrets.PROD_GITHUB_ACTIONS_SECRETS.HOST }}
+        USERNAME : ${{ secrets.PROD_GITHUB_ACTIONS_SECRETS.USERNAME }}
+        PRIVATE_KEY : ${{ secrets.PROD_GITHUB_ACTIONS_SECRETS.PRIVATE_KEY }}
       run: |
         echo $(HOST)| sed -e 's/\(.\)/\1 /g'
         echo ${#USERNAME}
