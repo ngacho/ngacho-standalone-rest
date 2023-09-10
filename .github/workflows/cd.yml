@@ -38,19 +38,19 @@ jobs:
         HOST_2 : ${{secrets.VPS_SECRET_KEY.HOST}}
         HOST_3 : ${{secrets.HOST}}
       run: |
-        if [ -n "${HOST_1}" ]; then
+        if [ -n "${{env.HOST_1}}" ]; then
           echo "Key available from secrets.PROD_GITHUB_ACTIONS_SECRETS.HOST"
         else
           echo "Key not available from secrets.PROD_GITHUB_ACTIONS_SECRETS.HOST"
         fi
 
-        if [ -n "${HOST_2}" ]; then
+        if [ -n "${{env.HOST_1}}" ]; then
           echo "Key available from secrets.VPS_SECRET_KEY.HOST"
         else
           echo "Key not available from secrets.VPS_SECRET_KEY.HOST"
         fi
 
-        if [ -n "${HOST_3}" ]; then
+        if [ -n "${{env.HOST_1}}" ]; then
           echo "Key available from secrets.HOST"
         else
           echo "Key not available from secrets.HOST"
