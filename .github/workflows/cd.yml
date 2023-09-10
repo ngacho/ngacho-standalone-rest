@@ -33,6 +33,7 @@ jobs:
         key: ${{ env.PRIVATE_KEY }}
         port: 22
         script: |
+          echo "$HOST"
           cd /srv/standalone-rest
           git pull origin main
           git status
