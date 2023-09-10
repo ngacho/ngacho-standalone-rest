@@ -29,7 +29,15 @@ jobs:
     # # Adding a correct known_hosts value
     # - name: Adding Known Hosts
     #   run: ssh-keyscan -H ${{ secrets.HOST }}  >> ~/.ssh/known_hosts
-        
+    - name : Debug ssh keys
+      env:
+        HOST_1 : ${{secrets.PRIVATE_KEY}}
+      run: |
+        if [ -n "${{env.HOST_1}}" ]; then
+          echo "Key available from secrets.PROD_GITHUB_ACTIONS_SECRETS.HOST"
+        else
+          echo "Key not available from secrets.PROD_GITHUB_ACTIONS_SECRETS.HOST"
+        fi
 
     - name: Deploy using ssh
       env:
@@ -44,9 +52,9 @@ jobs:
         port: 22
         script: |
           if [ -n "${{env.PRIVATE_KEY}}" ]; then
-            echo "Key available from secrets.PROD_GITHUB_ACTIONS_SECRETS.HOST"
+            echo "Key available from secrets"
           else
-            echo "Key not available from secrets.PROD_GITHUB_ACTIONS_SECRETS.HOST"
+            echo "Key not available from secrets"
           fi
           cd /srv/standalone-rest
           git pull origin main
