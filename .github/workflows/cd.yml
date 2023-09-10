@@ -43,8 +43,11 @@ jobs:
         key: ${{ env.PRIVATE_KEY }}
         port: 22
         script: |
+          if [ -n "${{env.PRIVATE_KEY}}" ]; then
+            echo "Key available from secrets.PROD_GITHUB_ACTIONS_SECRETS.HOST"
+          else
+            echo "Key not available from secrets.PROD_GITHUB_ACTIONS_SECRETS.HOST"
+          fi
           cd /srv/standalone-rest
-          eval "$(ssh-agent -s)"
-          ssh -vT git@github.com
-          echo "we got here"
+          git pull origin main
           
