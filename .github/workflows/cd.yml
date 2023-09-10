@@ -26,7 +26,6 @@ jobs:
         echo ${#HOST}
         echo ${#USERNAME}
 
-    - run : echo ${ ${{ secrets.HOST }} }
     - name: Deploy using ssh
       uses: appleboy/ssh-action@master
       with:
