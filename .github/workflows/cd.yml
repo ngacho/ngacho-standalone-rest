@@ -22,9 +22,11 @@ jobs:
     steps:
     # Adding the Private key to a Github Actions Workflow
     - name: Install SSH Key
+      env:
+        PRIVATE_KEY : ${{secrets.PROD_GITHUB_ACTIONS_SECRETS.PRIVATE_KEY}}
       uses: shimataro/ssh-key-action@v2
       with:
-        key: ${{ secrets.PROD_GITHUB_ACTIONS_SECRETS.PRIVATE_KEY }}
+        key: ${{ env.PRIVATE_KEY }}
         known_hosts: unnecessary
 
     # Adding a correct known_hosts value
