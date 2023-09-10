@@ -20,21 +20,13 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-    - name : Test Github secrets
-      env:
-        HOST: ${{ secrets.PROD_GITHUB_ACTIONS_SECRETS.HOST }}
-        USERNAME : ${{ secrets.PROD_GITHUB_ACTIONS_SECRETS.USERNAME }}
-        PRIVATE_KEY : ${{ secrets.PROD_GITHUB_ACTIONS_SECRETS.PRIVATE_KEY }}
-      run: |
-        echo ${#HOST}| sed -e 's/\(.\)/\1 /g'
-        echo ${#USERNAME}
 
     - name: Deploy using ssh
       uses: appleboy/ssh-action@master
       with:
-        host: ${{ env.HOST}}
-        username: ${{ env.USERNAME }}
-        key: ${{ env.PRIVATE_KEY }}
+        host: ${{ secrets.PROD_GITHUB_ACTIONS_SECRETS.HOST }}
+        username: ${{ secrets.PROD_GITHUB_ACTIONS_SECRETS.USERNAME }}
+        key: ${{ secrets.PROD_GITHUB_ACTIONS_SECRETS.PRIVATE_KEY }}
         port: 22
         script: |
           cd /srv/standalone-rest
