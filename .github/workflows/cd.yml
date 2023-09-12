@@ -39,6 +39,10 @@ jobs:
           echo "Key not available from secrets"
         fi
 
+    - name: 'Create env file'
+      run: |
+        echo "${{ secrets.ENV_FILE }}" > .env
+
     - name: Deploy using ssh
       env:
         HOST: ${{ secrets.HOST }}
