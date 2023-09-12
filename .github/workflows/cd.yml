@@ -48,7 +48,7 @@ jobs:
       with:
         host: ${{ env.HOST }}
         username: ${{ env.USERNAME }}
-        key: ${{ secrets.PRIVATE_KEY }}
+        key: ${{ secrets.SSH_PRIVATE_KEY }}
         port: 22
         script: |
           cd /srv/ngacho-standalone-rest
