@@ -53,4 +53,4 @@ jobs:
         script: |
           cd /srv/ngacho-standalone-rest
           ssh -vT git@github.com
-          
+          git pull origin main          
