@@ -31,7 +31,7 @@ jobs:
 
     - name : Debug ssh keys
       env:
-        HOST_1 : ${{secrets.PRIVATE_KEY}}
+        HOST_1 : ${{secrets.SSH_PRIVATE_KEY}}
       run: |
         if [ -n "${{env.HOST_1}}" ]; then
           echo "Key available from secrets"
@@ -43,12 +43,12 @@ jobs:
       env:
         HOST: ${{ secrets.HOST }}
         USERNAME : ${{ secrets.USERNAME }}
-        PRIVATE_KEY : ${{ secrets.PRIVATE_KEY }}
+        PRIVATE_KEY : ${{ secrets.SSH_PRIVATE_KEY }}
       uses: appleboy/ssh-action@master
       with:
         host: ${{ env.HOST }}
         username: ${{ env.USERNAME }}
-        key: ${{ secrets.SSH_PRIVATE_KEY }}
+        key: ${{ env.PRIVATE_KEY }}
         port: 22
         script: |
           cd /srv/ngacho-standalone-rest
