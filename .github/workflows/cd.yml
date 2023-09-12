@@ -51,6 +51,9 @@ jobs:
         key: ${{ env.PRIVATE_KEY }}
         port: 22
         script: |
+          pm2 stop rest-server
           cd /srv/ngacho-standalone-rest
           ssh -vT git@github.com
           git pull origin main          
+          npm i
+          pm2 start rest-server
