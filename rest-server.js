@@ -195,7 +195,7 @@ app.post([restRoutes.projects, restRoutes.bios, restRoutes.misc], authorizeAcces
 // Read
 app.get([restRoutes.blogs, restRoutes.projects, restRoutes.contactMe, restRoutes.bios], serverController.fetchAllDocs)
 app.get(restRoutes.blogsByTag, serverController.fetchDocsByTag);
-app.get([restRoutes.specificBlogRender, restRoutes.specificProjectRender, restRoutes.specificContactMeRender, restRoutes.specificBioRender], serverController.fetchDocById);
+app.get([restRoutes.specificBlog, restRoutes.specificProjectRender, restRoutes.specificContactMeRender, restRoutes.specificBioRender], serverController.fetchDocById);
 
 
 // reading misc files is protected

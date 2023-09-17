@@ -114,8 +114,6 @@ module.exports = class ServerController {
         let id = req.params.id;
         if (!id) res.status(400).send({ error: "No id found in request" })
 
-        let serverSideRendering = req.params.ssr;
-
         let exists = client.exists(storageName, id);
         exists.then((reply) => {
             if (reply == 1) {
