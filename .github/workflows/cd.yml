@@ -57,6 +57,7 @@ jobs:
         script: |
           cd /srv/ngacho-standalone-rest
           pm2 stop rest-server
+          redis-cli flushall
           ssh -vT git@github.com
           git pull origin main          
           npm i
